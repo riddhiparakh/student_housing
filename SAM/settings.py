@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-h5$(z4_03@@-a!x(#4(!@a!&vu#ium3*=05xcinu+4flz6ob4l
 DEBUG = True
 # DEBUG=False
 
-ALLOWED_HOSTS = ['student-acc-management.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
