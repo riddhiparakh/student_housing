@@ -1,0 +1,86 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% load widget_tweaks %} 
+{% block content %} 
+{% load socialaccount %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
+ 
+ <div  style="text-align: center; margin-top: 10%;  margin-left:auto;" >
+     <div class="text-center mb-3">
+          <p style="font-size:20px;color:navy;margin-left:70px;">Sign in with:</p>
+      <a href="{% provider_login_url "yahoo" %}">
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="fab fa-yahoo"style="font-size:20px;color:navy;margin-left:70px;"></i>
+      </button>
+    </a>
+      <a href="{% provider_login_url "google" %}">
+      <button type="button" class="btn btn-link btn-floating mx-1"style="margin-left:70px;">
+          <i class="fab fa-google"style="font-size:20px;color:navy;"></i>
+        </button>
+      </a>
+     </div>
+     <p class="text-center" style="font-size:20px;color:navy;margin-left:70px;">or:</p>
+   
+ 
+<form method="POST",style="width: 550px;">
+    
+     <h2 style="font-size:20px;color:navy;margin-left:62px;">SIGN UP </h2>
+     
+     {% csrf_token %}
+     <br>
+     <div class="form-outline mb-4"  style="color:navy;margin-left:62px;">
+    <!-- {% comment %} {% render_field form.username.label type='Username' %} {% endcomment %} -->
+    <i class="fa fa-user" style="font-size:20px;color:navy"></i> &nbsp;
+   {% render_field form.username class='input' placeholder='username'%}
+     <!-- {% comment %} {{form.username }} {% endcomment %} -->
+     </div>
+
+
+     <div class="form-outline mb-4" style="color:navy;margin-left:62px;">
+     <!-- {% comment %} {{form.email.label}} -->
+     <!-- {{form.email }} {% endcomment %} -->
+    <i class="fa fa-envelope" style="font-size:20px;color:navy"></i> &nbsp;
+
+    {% render_field form.email class='input' placeholder='youremail@xyz.com'%} 
+
+     </div>
+     
+ 
+  <div class="form-outline mb-4"style="color:navy;margin-left:62px;">
+     <!-- {% comment %} {{form.password1.label}}
+     {{form.password1 }} {% endcomment %} -->
+    <i class="fa fa-lock" style="font-size:20px;color:navy"></i> &nbsp;
+
+   {% render_field form.password1 class='input' placeholder='Password'%}
+
+     </div>
+     
+   
+   
+  <div class="form-outline mb-4"style="color:navy;margin-left:62px;">
+      <!-- {% comment %} {{form.password2.label}}
+      {{form.password2 }} {% endcomment %} -->
+    <i class="fa fa-key" style="font-size:20px;color:navy"></i> &nbsp;
+
+    {% render_field form.password2 class='input' placeholder='Password Confirmation'%}
+
+      </div>
+  </br>
+  <!-- Checkbox -->
+  <div class="form-check d-flex justify-content-center mb-4"style="color:navy;margin-left:70px;">
+      <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+        aria-describedby="registerCheckHelpText" style=" margin-right:20%" />
+      <label class="form-check-label" for="registerCheck">
+        I have read and agree to the terms
+      </label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-3" style=" width:8%;margin-left:49%;background-color:navy" >Sign in</button>
+</form>
+</div>
+
+ {% endblock%} 

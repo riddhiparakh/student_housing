@@ -1,0 +1,35 @@
+
+
+{% load static %}
+{% load widget_tweaks %} 
+{% block content %} 
+
+<div class="card shadow-sm">
+<div class="sale_container">
+  {% for d in data %}
+  <div class="box">
+    
+    <div class="img-box" style="margin-left:40px" >
+      <img src="{{d.room_image1.url}}"style="width:400px;height:200px" alt=""> 
+    </div>
+    
+    <div class="detail-box">
+      <h6 style="font-size:20px;color:navy;"><i class='fas fa-home' style='font-size:20px;color:navy'></i> 
+        {{d.building_name}}
+      </h6>
+      <h4 style="font-size:20px;color:navy;"><i class='fas fa-map-marked' style='font-size:20px;color:navy'></i>
+        {{d.address}}
+      </h4>
+      <h4 style="font-size:20px;color:navy;">
+        <i class="	fa fa-inr"style='font-size:20px;color:navy'></i> {{d.price}}
+      </p>
+      
+    </div>
+    
+  
+  </div>
+</div>
+  {% endfor %}
+
+
+  {%endblock%}

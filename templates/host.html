@@ -1,0 +1,87 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% load widget_tweaks %} 
+{% block content %} 
+
+  <!-- sale section -->
+ 
+  <section class="sale_section layout_padding">
+    <div class="container-fluid">
+      <div class="heading_container" style="margin-top:-4%">
+        <h2 style="color:navy">
+          Your Properties
+        </h2>
+        
+      </div>
+      
+      
+         
+      
+        
+      <div class="sale_container">
+        
+       
+       
+          <a href="{% url 'addproperty' %}">
+            <i class="fa fa-plus"style="font-size:25px;color: navy;" ></i>
+          </a>
+          
+         {% for d in data %}
+
+      
+         <a href="{% url 'detail' d.building_name %}"
+        
+        
+    
+          <div class="row-md-6" >  
+            <div class="col-sm-3">
+            
+              <div class="card mb-2" >
+               
+                
+               
+                <img class="card-img-top" src="{{d.room_image1.url}}"
+                  alt="Card image cap" >
+
+                <div class="card-body">
+                  <h4 class="card-title" style="font-size:20px;color:navy;"><i class='fas fa-home' style='font-size:20px;color:navy'></i> {{ d.building_name }}</h4>
+
+                  <h4 class="card-text"style="font-size:20px;color:navy;"><i class='fas fa-map-marked' style='font-size:20px;color:navy'></i>     {{d.address }} </h4>
+
+                  <h4 class="card-text"style="font-size:20px;color:navy;"> <i class="	fa fa-inr"style='font-size:20px;color:navy'></i>{{ d.price }}</h4>
+                 
+                  <a href="{% url 'update' d.id %}">
+                   <i class="fa-solid fa-pen"  style="color: navy;margin-left:35%;margin-right:10px"></i>
+                  </a>
+
+                  <a href="{% url 'delete' d.id  %}">
+                    <i class="fa-solid fa-trash-can"  style="color: navy;"></i>
+                   </a> 
+               
+             
+                </div>
+              
+              </div>
+             
+             
+             
+            
+          
+             
+              </div>    
+     
+          
+       
+         {%endfor%}
+        
+         
+        </div>
+  
+  </div>
+  </section>
+
+
+
+
+  {%endblock%}

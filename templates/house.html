@@ -1,0 +1,288 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% load widget_tweaks %} 
+{% block content %} 
+
+  
+
+  {% comment %} <section class="sale_section layout_padding">
+    <div class="container-fluid">
+      <div class="heading_container">
+        <h2>
+          Rent an Apartment or Book a hostel
+        </h2>
+        <p>
+          
+        </p>
+      </div>
+      
+      <div class="sale_container">
+     <div>
+       {% for d in data %}
+      <a href="{% url 'detail' d.building_name %}">
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/s-2.jpg' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              {{d.building_name}}
+            </h6>
+            <p>
+              {{d.address}}
+            </p>
+            Rs.{{d.price}}
+          </div>
+        </div>
+      </div>
+        {%endfor%}  {% endcomment %}
+        
+        {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-4.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div> {% endcomment %}
+        {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-5.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div> {% endcomment %}
+      {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-6.jpg" alt="">
+          </div>
+          
+        </div>
+      </div>  {% endcomment %}
+      {% comment %} <div class="btn-box">
+        <a href="">
+          Find More
+        </a>
+      </div> {% endcomment %}
+    {% comment %} </div>
+  </section> {% endcomment %}
+
+  <div class="container my-4">
+{% comment %} 
+    <p class="font-weight-bold">Bootstrap carousel multiple items is an improved version of the standard bootstrap
+      carousel which allows you to put inside more than one element.</p>
+
+    <p> {% endcomment %}
+      <strong><a href="https://mdbootstrap.com/docs/standard/components/carousel/"
+          target="_blank"></a></p>
+
+    <hr class="my-4">
+
+    <!--Carousel Wrapper-->
+   
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+{% comment %} 
+      <!--Controls-->
+      <div class="controls-top">
+        <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+        <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+      </div>
+      <!--/.Controls-->
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+      </ol> {% endcomment %}
+      <!--/.Indicators-->
+     
+      <!--Slides-->
+      
+      <div class="carousel-inner" role="listbox">
+       
+        <!--First slide-->
+        <div class="carousel-item active">
+          
+          <div class="row">
+            
+            {% comment %} <a href="{% url 'detail' d.building_name %}"> {% endcomment %}
+              {% for d in data %}
+            <div class="col-md-4">
+              
+              <div class="card mb-2">
+               
+                
+                <img class="card-img-top" src="{{d.room_image1.url}}"
+                  alt="Card image cap">  
+                <div class="card-body">
+                  <h4 class="card-title" style="font-size:20px;color:navy;"><i class='fas fa-home' style='font-size:20px;color:navy'></i> {{ d.building_name }}</h4>
+                  <h4 class="card-text"style="font-size:20px;color:navy;"><i class='fas fa-map-marked' style='font-size:20px;color:navy'></i>     {{d.address }} </h4>
+                  <h4 class="card-text"style="font-size:20px;color:navy;"> <i class="	fa fa-inr"style='font-size:20px;color:navy'></i>{{ d.price }}</h4>
+                  <a href={% url 'detail' d.building_name %}> 
+                    <i class="fa-solid fa-circle-info"  style="color: navy;font-size:20px;margin-left:3px;"></i>
+                  </a>
+                   <span class='fa-regular fa-bookmark' style='font-size:20px;color:navy;size:width:20%;background-color:Transparent;margin-left:20px'> </span>
+                  
+                  
+                </div>
+               
+              </div>
+            
+           
+            </div>
+            {% endfor %}
+            
+              {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+                {% for d in data %}
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{d.building_name}}</h4>
+                  <p class="card-text">{{d.address}}</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>   {% endcomment %}
+
+            {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a href="" class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div> {% endcomment %}
+            
+          </div> 
+        {% comment %} </a> {% endcomment %}
+        </div> 
+       
+        <!--/.First slide-->
+
+        <!--Second slide-->
+        {% comment %} <div class="carousel-item">
+
+          <div class="row">
+            {% for d in data %}
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{ d.building_name }}</h4>
+                <p class="card-text">{{d.address }} </p>
+                <p class="card-text"> {{ d.price }}</p>
+                <a href={% url 'detail' d.building_name %} class="btn btn-primary">Know More</a>
+                
+              </div>
+            </div>
+            
+
+            {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div> {% endcomment %}
+
+            {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>   {% endcomment %}
+        
+        <!--/.Second slide-->
+
+        <!--Third slide-->
+         {% comment %} <div class="carousel-item">
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a class="btn btn-primary">Button</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>  {% endcomment %}
+        <!--/.Third slide-->
+       
+      </div>
+      <!--/.Slides-->
+      
+    </div>
+    <!--/.Carousel Wrapper-->
+
+
+  </div>
+
+
+  {%endblock%}

@@ -1,0 +1,152 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %} 
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+
+
+</br>
+
+<section class="sale_section layout_padding">
+  <div class="container-fluid">
+    <div class="heading_container" style="margin-top:-4%">
+      <h2 style="color:navy">
+        Following results for your search:
+      </h2>
+      
+    </div>
+    <div class='sale_container'>
+      {% for d in filter.qs%}
+      
+        <div class="col-sm-3">
+          <div class="card mb-2" >
+            <img class="card-img-top" src="{{d.room_image1.url}}"
+            alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title" style="font-size:20px;color:navy;"><i class='fas fa-home' style='font-size:20px;color:navy'></i> {{ d.building_name }}</h4>
+              <h4 class="card-text"style="font-size:20px;color:navy;"><i class='fas fa-map-marked' style='font-size:20px;color:navy'></i>     {{d.address }} </h4>
+              <h4 class="card-text"style="font-size:20px;color:navy;"> <i class=" fa fa-inr"style='font-size:20px;color:navy'></i>{{ d.price }}</h4>
+              <a href={% url 'detail' d.building_name %}  style="color:navy;">
+                <i class="fa-solid fa-circle-info"  style="color: navy;font-size:20px;margin-left:120px;"></i>
+              </a>
+
+            </div>
+          </div>  
+            
+           
+          
+        </div>
+        {%endfor%}
+      
+     
+
+      <div class='row-6'style="width:50%" >
+        <div class="col-md-6"style="width:50%">
+         <div class="container-fluid">
+          <div class="cli-md-6 px-0" style="margin:auto;width:200%;height:100%;">
+            <div class="map-container">
+              <div class="map" id='mapid' style="width:100%;height:400px">
+
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+     
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+   
+
+    
+
+
+
+
+
+
+
+
+
+
+  </div>  
+    
+ 
+</section>
+          
+  
+   
+
+{% endblock %}
+
+{% block script %}
+
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+crossorigin=""></script>
+<script>
+ var map = L.map('mapid').setView([19.076, 72.8777], 11);
+
+ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+ attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+ }).addTo(map);
+
+ var data = JSON.parse("{{data|escapejs}}");
+ console.log(data)
+ 
+ for (let i=0; i<data.length; i++)
+ {
+  console.log(data[i])
+  var name=data[i][2]
+  L.marker([data[i][0], data[i][1]]).addTo(map).bindPopup(name, {maxWidth:400, maxHeight:750});
+ }
+ </script>
+{% endblock %}
+
+
+
+{% comment %} <div class="sale_container">
+  {% for d in filter.qs%}
+ <div class="row-md-6" >  
+      <div class="col-sm-3">
+      
+       <div class="card mb-2" >
+         
+          
+       
+          <img class="card-img-top" src="{{d.room_image1.url}}"
+          alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size:20px;color:navy;"><i class='fas fa-home' style='font-size:20px;color:navy'></i> {{ d.building_name }}</h4>
+          <h4 class="card-text"style="font-size:20px;color:navy;"><i class='fas fa-map-marked' style='font-size:20px;color:navy'></i>     {{d.address }} </h4>
+          <h4 class="card-text"style="font-size:20px;color:navy;"> <i class=" fa fa-inr"style='font-size:20px;color:navy'></i>{{ d.price }}</h4>
+          <a href={% url 'detail' d.building_name %}  style="color:navy;">
+            <i class="fa-solid fa-circle-info"  style="color: navy;font-size:20px;margin-left:120px"><i>
+          </a>
+
+         
+       
+        </div>
+        
+      </div>
+       
+    </div>    
+
+    
+ 
+   {%endfor%}
+  </div>
+</div> {% endcomment %}

@@ -1,0 +1,1141 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <script src="https://kit.fontawesome.com/39cb25a694.js" crossorigin="anonymous"></script>
+  <title>SAM</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="{% url 'home'%}" style="text-size:35px;color:navy">
+           <strong> SAM </strong>
+           {% comment %} <img src="images/hero-bg.jpg" class="background-image" alt="Card Back"> {% endcomment %}
+          </a>
+          <div class="navbar-collapse" id="">
+            <ul class="navbar-nav justify-content-between ">
+              <div class="User_option">
+                <li class="">
+                  {% if not user.is_authenticated %}
+                  
+                  <a class="mr-4" href="{% url 'register' %}">
+                    Signup
+                  </a>
+                 
+                  <a class="mr-4" href="{% url 'login' %}" >
+                    Login</a>
+
+                  <a class="mr-4" href="{% url 'register' %}">
+                     Become a host 
+                  </a>
+                 
+                  {% else%}
+                  <a class="mr-4" href="{% url 'logout' %}">
+                    Logout
+                  </a>
+                  <a class="mr-4" href="{% url 'host' %}">
+                    Become a host 
+                    </a>
+                  
+                  {% endif %}
+                </li>
+              </div>
+            </ul>
+
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1">
+
+                </span>
+                <span class="s-2">
+
+                </span>
+                <span class="s-3">
+
+                </span>
+              </button>
+            </div>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="{%url 'house' %}">HOME</a>
+                <a href="{% url 'host'%}"> Become a host</a>
+                <a href="{% url 'setting'%}">Settings</a>
+                <a href="{% url 'fav'%}">Favourites</a>
+                {% comment %} <a href="{% url 'detail' %}">Book a room</a> {% endcomment %}
+
+
+               
+             
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 offset-md-1">
+            <div class="detail-box">
+              <h1>
+                <span> Modern</span> <br>
+                Apartment <br>
+                Houses 
+              </h1>
+              <p>
+                Connects Students to affordable housing
+              </p>
+              <div class="btn-box">
+                <!-- <a href="" class="">
+                  Read More
+                </a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+  {% comment %} <div class="card card-body">
+    <form method="get">
+      {{ filter.form.as_p }}
+      <a href={% url 'search' %}>
+      <input type="submit" />
+      </a>
+  </form>
+  {% for obj in filter.qs %}
+     <br />
+  {% endfor %}
+  </div> {% endcomment %}
+  <!-- find section -->
+   <section class="find_section ">
+     <div class="container"> 
+      {% comment %} <form action=""> {% endcomment %}
+       <div class=" form-row"> 
+          <div class="col-md-5"style="margin-top: 24px;"> 
+            {% comment %} <input type="text" class="form-control" placeholder="Search Room Type eg.Shared room ">  {% endcomment %}
+            </div>   
+          
+          <div class=" card-body"style="margin-left:120px">
+            <form method="GET" action="{% url 'search' %}">
+              <div class=" card-body">
+               {{ filter.form|crispy}} 
+            
+              
+  
+
+              </div>
+              
+             {% comment %} <a href="{% url 'search' %}"> {% endcomment %}
+              <button type="submit" style="color:white;background-color:navy;">Search</button>
+             {% comment %} </a> {% endcomment %}
+              
+          </form>
+          {% comment %} <div class="sale_container" >
+           {% for room in filter.qs%}
+             {% include "cardview.html" %}
+           {%endfor%} 
+          </div> {% endcomment %}
+            </div>   
+        </div>
+        
+       <div class="col-10">
+        
+       </div>
+
+          {% comment %} <div class="col-md-5" >
+            <div class="form-group mb-3"><label class="form-label" for="from-phone"></label>
+              <div class="input-group"><input class="form-control" type="date"></div>
+          </div> {% endcomment %}
+           {% comment %} <div class="col-md-5"style="margin-top: 24px;" > {% endcomment %}
+            
+            {% comment %} <div class="form-select"></div><select class="form-select" id="from-calltime-1" name="call time">
+              <optgroup label="">
+              
+                  <option value="6months ">6 months</option>
+                  <option value="1 year ">1 year </option>
+                  <option value="">2 year </option>
+             </optgroup> 
+
+           </select> {% endcomment %}
+           
+       
+         
+          
+           </div> 
+
+        {% comment %} </div>
+
+          <div class=" form-row"> 
+           <div class="col-md-5"style="margin-top: 24px;" >
+            <div class="form-select"></div><select class="form-select" id="from-calltime-1" name="call time">
+              <optgroup label="">
+              
+                  <option value="6months ">6 months</option>
+                  <option value="1 year ">1 year </option>
+                  <option value="">2 year </option>
+             </optgroup>
+          </select>
+          </div>  {% endcomment %}
+      {% comment %} </div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" placeholder="Location ">
+            
+          </div>
+          
+           <div class="col-md-2">
+            <a href="{% url 'search'%}">
+            <button type="submit" class="">
+              search
+            </button>
+          </a>
+          </div>
+        </div>  {% endcomment %}
+
+       {% comment %} </form> {% endcomment %}
+     </div> 
+  </section> 
+
+ 
+       
+        
+          
+
+        
+      </div> 
+
+    </div> 
+   
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    {% comment %} <div class="carousel-item">
+
+      <div class="row">
+        {% for d in data %}
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+            alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{ d.building_name }}</h4>
+            <p class="card-text">{{d.address }} </p>
+            <p class="card-text"> {{ d.price }}</p>
+            <a href={% url 'detail' d.building_name %} class="btn btn-primary">Know More</a>
+            
+          </div>
+        </div>
+        
+
+        {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div> {% endcomment %}
+
+        {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>   {% endcomment %}
+    
+    <!--/.Second slide-->
+
+    <!--Third slide-->
+     {% comment %} <div class="carousel-item">
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>  {% endcomment %}
+    <!--/.Third slide-->
+   
+  </div>
+  <!--/.Slides-->
+  
+</div>
+
+
+
+</div>
+
+  <!-- end find section -->
+
+
+  <!-- about section
+
+  <section class="about_section layout_padding-bottom">
+    <div class="square-box">
+      <img src="images/square.png" alt="">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="images/about-img.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About Our Apartment
+              </h2>
+            </div>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- end about section -->
+  
+        
+          {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+            {% for d in data %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{d.building_name}}</h4>
+              <p class="card-text">{{d.address}}</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>   {% endcomment %}
+
+        {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a href="" class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div> {% endcomment %}
+        
+      </div> 
+    {% comment %} </a> {% endcomment %}
+    </div> 
+   
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    {% comment %} <div class="carousel-item">
+
+      <div class="row">
+        {% for d in data %}
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+            alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{ d.building_name }}</h4>
+            <p class="card-text">{{d.address }} </p>
+            <p class="card-text"> {{ d.price }}</p>
+            <a href={% url 'detail' d.building_name %} class="btn btn-primary">Know More</a>
+            
+          </div>
+        </div>
+        
+
+        {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div> {% endcomment %}
+
+        {% comment %} <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>   {% endcomment %}
+    
+    <!--/.Second slide-->
+
+    <!--Third slide-->
+     {% comment %} <div class="carousel-item">
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 clearfix d-none d-md-block">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>  {% endcomment %}
+    <!--/.Third slide-->
+   
+  </div>
+  <!-- sale section -->
+
+  <section class="sale_section layout_padding-bottom">
+    <div class="container-fluid" style="margin-top:-200px;">
+      <div class="heading_container">
+        <h2>
+          House For Rent
+        </h2>
+        <p>
+          Book your accomodation today.
+        </p>
+      </div>
+      
+      <div class="sale_container">
+        {% for d in data %}
+        <div class="box">
+          
+          <div class="img-box">
+            <img src="{{d.room_image1.url}}" alt="">
+          </div>
+          
+          <div class="detail-box">
+            <h6>
+              {{d.building_name}}
+            </h6>
+            <p>
+              {{d.address}}
+            </p>
+            <p>
+              <i class="	fa fa-inr"></i> {{d.price}}
+            </p>
+            
+          </div>
+          
+        
+        </div>
+        {% endfor %}
+        {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-2.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div>   {% endcomment %}
+     {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-3.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div>  {% endcomment %}
+         {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-4.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div>  {% endcomment %}
+       {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-5.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div>  {% endcomment %}
+         {% comment %} <div class="box">
+          <div class="img-box">
+            <img src="images/s-6.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <h6>
+              apertments house
+            </h6>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but
+            </p>
+          </div>
+        </div>  {% endcomment %}
+     
+      </div>
+      
+      <div class="btn-box">
+        <a href="{% url 'house'%}">
+          Find More
+          <br>
+        </a>
+        <br>
+      </div>
+    </div> 
+    
+  {% comment %} </section>  {% endcomment %} 
+
+  <!-- end sale section -->
+
+  <!-- price section -->
+
+  <!-- <section class="price_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Pricing
+        </h2>
+        <p>
+          There are many variations of passages of Lorem Ipsum available, but the
+        </p>
+      </div>
+      <div class="price_container">
+        <div class="box">
+          <div class="detail-box">
+            <div class="heading-box">
+              <h4>
+                01
+              </h4>
+              <h6>
+                Basic
+              </h6>
+            </div>
+            <div class="text-box">
+              <h2>
+                $1000.00
+              </h2>
+              <ul>
+                <li>
+                  variations of
+                </li>
+                <li>
+                  passages of Lorem
+                </li>
+                <li>
+                  Ipsum available,
+                </li>
+                <li>
+                  but the majority
+                </li>
+                <li>
+                  have suffered
+                </li>
+                <li>
+                  alteration in
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="detail-box">
+            <div class="heading-box">
+              <h4>
+                02
+              </h4>
+              <h6>
+                Standard
+              </h6>
+            </div>
+            <div class="text-box">
+              <h2>
+                $2000.00
+              </h2>
+              <ul>
+                <li>
+                  variations of
+                </li>
+                <li>
+                  passages of Lorem
+                </li>
+                <li>
+                  Ipsum available,
+                </li>
+                <li>
+                  but the majority
+                </li>
+                <li>
+                  have suffered
+                </li>
+                <li>
+                  alteration in
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="detail-box">
+            <div class="heading-box">
+              <h4>
+                03
+              </h4>
+              <h6>
+                Premium
+              </h6>
+            </div>
+            <div class="text-box">
+              <h2>
+                $3000.00
+              </h2>
+              <ul>
+                <li>
+                  variations of
+                </li>
+                <li>
+                  passages of Lorem
+                </li>
+                <li>
+                  Ipsum available,
+                </li>
+                <li>
+                  but the majority
+                </li>
+                <li>
+                  have suffered
+                </li>
+                <li>
+                  alteration in
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- end price section -->
+
+  <!-- deal section -->
+<!-- 
+  <section class="deal_section layout_padding-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Very Good Deal For House
+              </h2>
+            </div>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable.
+            </p>
+            <a href="">
+              Get A Quote
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="img-box">
+            <div class="box b1">
+              <img src="images/d-1.jpg" alt="">
+            </div>
+            <div class="box b1">
+              <img src="images/d-2.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- end deal section -->
+
+
+  <!-- us section -->
+  <section class="us_section layout_padding2"style="margin-top:10px">
+
+    <div class="container" >
+      <div class="heading_container">
+        <h2>
+          Why Choose Us
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/u-1.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h3 class="price">
+                1000+
+              </h3>
+              <h5>
+                Years of House
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/u-2.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h3>
+                200+
+              </h3>
+              <h5>
+                Students Helped
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/u-3.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h3>
+                10000+
+              </h3>
+              <h5>
+                Satisfied Customers
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/u-4.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h3>
+                1500+
+              </h3>
+              <h5>
+                Cheap Rates
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- end us section -->
+
+  <!-- client secction -->
+
+  <section class="client_section layout_padding">
+    <div class="container-fluid">
+      <div class="heading_container">
+        <h2>
+          What is Says Our Customer
+        </h2>
+      </div>
+      <div class="client_container">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="box">
+                <div class="img-box">
+                  <img src="{% static 'images/client.jpg' %}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    <span>Majority</span>
+                    <hr>
+                  </h5>
+                  <p>
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration
+                    in some form, by injected humour, or randomised words which don't look even slightly believable.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="box">
+                <div class="img-box">
+                  <img src="{% static 'images/client.jpg' %}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    <span>Majority</span>
+                    <hr>
+                  </h5>
+                  <p>
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration
+                    in some form, by injected humour, or randomised words which don't look even slightly believable.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="box">
+                <div class="img-box">
+                  <img src="{% static 'images/client.jpg' %}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    <span>Majority</span>
+                    <hr>
+                  </h5>
+                  <p>
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration
+                    in some form, by injected humour, or randomised words which don't look even slightly believable.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+  <!-- contact section -->
+
+  <section class="contact_section ">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Get In Touch
+        </h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="map_container">
+            <div class="map-responsive">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609918813!2d72.74109908908066!3d19.082197838926515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1666966222044!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-5 ">
+          <div class="form_container">
+            <form action="">
+              <div>
+                <input type="text" placeholder="Name" />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" />
+              </div>
+              <div>
+                <input type="text" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="text" class="message-box" placeholder="Message" />
+              </div>
+              <div class="d-flex ">
+                <button>
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+
+
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h5>
+              About Apartment
+            </h5>
+            <div>
+              <div class="img-box">
+                <img src="{% static 'images/location.png' %}" width="18px" alt="">
+              </div>
+              <p>
+                Address
+              </p>
+            </div>
+            <div>
+              <div class="img-box">
+                <img src="{% static 'images/phone.png' %}" width="12px" alt="">
+              </div>
+              <p>
+                +91 9838728139
+              </p>
+            </div>
+            <div>
+              <div class="img-box">
+                <img src="{% static 'images/mail.png' %}" width="18px" alt="">
+              </div>
+              <p>
+                sam@info.in
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Information
+            </h5>
+            <p>
+              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Useful Link
+            </h5>
+            <ul>
+              <li>
+                <a href="">
+                  Properties
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <h5>
+              Newsletter
+            </h5>
+            <form action="">
+              <input type="email" placeholder="Enter your email">
+              <button>
+                Subscribe
+              </button>
+            </form>
+            <div class="social_box">
+              <a href="">
+                <img src="{% static 'images/fb.png' %}" alt="">
+              </a>
+              <a href="">
+                <img src="{% static 'images/twitter.png' %}" alt="">
+              </a>
+              <a href="">
+                <img src="{% static 'images/linkedin.png' %}" alt="">
+              </a>
+              <a href="">
+                <img src="{% static 'images/youtube.png' %}" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">SAM</a>
+      </p>
+    </div>
+  </section>
+  <!-- end  footer section -->
+
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+
+</html>

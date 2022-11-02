@@ -1,0 +1,72 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% block content %} 
+{% load widget_tweaks %}
+
+
+<div style="text-align: center; margin-top: auto;  margin-left:40%;width:20%;">
+  <h4 class="modal-title">Update Property</h4>
+<form method='POST' action=""enctype="multipart/form-data">
+  {% csrf_token %}
+  <label>Building Name</label>
+  {% render_field form.building_name placeholder='building_name' class="form-control"%}
+  <br>
+  <label>Address</label>
+
+  {% render_field form.address class="form-control" placeholder='Address'%}
+  <br>
+
+  <label>Price</label>
+
+  {% render_field form.price class="form-control" placeholder='price'%}
+  <br>
+  <label>Room Image</label>
+ 
+  {% render_field form.room_image1 class="form-control" placeholder='room_image'%}
+  <br>
+  <label>Room Image</label>
+
+  {% render_field form.room_image2 class="form-control" placeholder='room_image'%}
+  <br>
+  <label>Room Image</label>
+
+  {% render_field form.room_image3 class="form-control" placeholder='room_image'%}
+  <br>
+
+  <br>
+  <label>Preferences</label>
+
+  {% render_field form.preferences class="form-control" placeholder='preferences'%}
+  <br>
+  <label>Room Type</label>
+
+  {% render_field form.room_type class="form-control"placeholder='room_type'%}
+  <br>
+  <label>Duration</label>
+
+
+  {% render_field form.duration class="form-control" placeholder='duration'%}
+  <br>
+  <label>capacity</label>
+
+  {% render_field form.cap class="form-control" placeholder='capacity'%}
+  <br>
+  <label>Food</label>
+
+
+  {% render_field form.food class="form-control" placeholder='food'%}
+
+  {% comment %} {% render_field form.owner class="form-control" placeholder='owner'%} {% endcomment %}
+<br>
+<br>
+
+  <button type="submit" class="btn btn-primary btn-block mb-3" >Update</button>
+
+
+
+</div>
+</form>
+
+{% endblock %} 
+<!-- Edit Modal HTML -->
